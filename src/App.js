@@ -2,19 +2,19 @@ import React,{useEffect, useState} from 'react'
 
 import Navbar from './components/Navbar.jsx'
 import Footer from './components/Footer.jsx'
-import Routes from './components/Routes.jsx'
+import AppRoutes from './components/AppRoutes.jsx'
 
 const App = () => {
   
-  const [dark, setDark] = useState(false)
-  console.log("dark : ",dark);
+  const [darkTheme, setDarkTheme] = useState(false)
+  console.log("dark : ",darkTheme);
   return (
-    <div className={dark ? 'dark' : ''}>
-        <h1  className="text-4xl p-10 font-bold underline text-gray-100 bg-gray-200 dark:bg-gray-800 dark:text-gray-500 min-h-screen">
-             <Navbar />
-             <Routes />
+    <div className={darkTheme ? 'dark' : ''}>
+        <div  className="bg-gray-100 dark:bg-gray-900 dark:text-gray-200 min-h-screen">
+             <Navbar darkTheme = {darkTheme} setDarkTheme = {setDarkTheme}/>
+             <AppRoutes />
              <Footer />
-        </h1>
+        </div>
     </div>
   )
 }
