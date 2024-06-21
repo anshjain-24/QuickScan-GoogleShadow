@@ -9,10 +9,19 @@ const Results = () => {
   const { results, loading, getResults, searchTerm } = useResultContext();
   const location = useLocation();
 
-  useEffect(() => {
-    getResults('websearch')
-  }, []);
 
+
+  useEffect(() => {
+    console.log('useEffect triggered with searchTerm:', searchTerm);
+    console.log('useEffect triggered with location.pathname:', location.pathname);
+
+    if (searchTerm) {
+      getResults(location.pathname,searchTerm)
+    }
+
+  }, [searchTerm, location.pathname]);
+
+  // if (loading) return <Loading />
   if (loading) return <Loading />
 
   console.log(location.pathname)
@@ -28,7 +37,7 @@ const Results = () => {
                   {href}
                 </p>
                 <p className='text-lg hover:underline dark:text-blue-300 text-blue-700'>
-                  {body.length > 30 ? body.substring(0, 30) : body}
+                  {body.length > 50 ? body.substring(0, 50) : body}
                 </p>
               </a>
             </div>
@@ -36,7 +45,28 @@ const Results = () => {
         </div>
       )
     case '/images':
-      return 'SEARCH'
+      return (
+        <div className='flex flex-wrap justify-between items-center'>
+          {results?.result?.map(({ image, url, title }, index) => (
+            <div>
+              <a className='sm:p-3 p-5' href={url} key={index} target='_blank' rel='noreferrer'>
+                <img src={image}
+                  onError={(e) => {
+                    e.target.onerror = null; // To prevent infinite loop
+                    e.target.src = 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/1665px-No-Image-Placeholder.svg.png'; // URL of your fallback image
+                    e.target.alt = "Fallback image description"; // Alt text for the fallback image
+                    e.target.width=150;
+                    e.target.height=150;
+                  }}
+                  loading='lazy' width={150} height={150} />
+                <p className='w-36 break-words text-sm mt-2'>
+                  {title}
+                </p>
+              </a>
+            </div>
+          ))}
+        </div>
+      )
     case '/videos':
       return 'SEARCH'
     case '/news':
