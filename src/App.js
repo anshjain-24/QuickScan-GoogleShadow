@@ -4,6 +4,7 @@ import Navbar from './components/Navbar.jsx'
 import Footer from './components/Footer.jsx'
 import AppRoutes from './components/AppRoutes.jsx'
 
+
 const App = () => {
   
   const [darkTheme, setDarkTheme] = useState(false)

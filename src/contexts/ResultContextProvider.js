@@ -9,7 +9,7 @@ export const ResultContextProvider = ({ children }) => {
 
     const [results, setResults] = useState([]);
     const [loading, setLoading] = useState(false);
-    const [searchTerm, setSearchTerm] = useState('Ansh Jain Vadodara');
+    const [searchTerm, setSearchTerm] = useState('');
 
     const getResults = async (path, query) => {
         setLoading(true);
@@ -65,9 +65,7 @@ export const ResultContextProvider = ({ children }) => {
         const response = await fetch(`${baseUrl}/${path}`, {
             method: 'POST',
             headers: {
-                // 'x-rapidapi-key': '1f12ca2dbbmsh9858e812993b0eap102373jsn87ad6fb63259',
-                // 'x-rapidapi-key': '80b6baec3emsh7bd5969bca11864p129051jsn09ba1c2821a7',
-                'x-rapidapi-key' : '98b0b1b438mshc389b7464707af3p1b3172jsn7fe712c8a009',
+                'x-rapidapi-key': '1f12ca2dbbmsh9858e812993b0eap102373jsn87ad6fb63259',
                 'x-rapidapi-host': 'google-api31.p.rapidapi.com',
                 'Content-Type': 'application/json'
             },

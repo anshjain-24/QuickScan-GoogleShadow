@@ -10,7 +10,6 @@ const Results = () => {
   const location = useLocation();
 
 
-
   useEffect(() => {
     console.log('useEffect triggered with searchTerm:', searchTerm);
     console.log('useEffect triggered with location.pathname:', location.pathname);
@@ -70,7 +69,7 @@ const Results = () => {
     case '/videos':
       return (
         <div className='flex flex-wrap'>
-          {results?.result?.map(({ content, embed_html, images, description }, index) => (
+          {results?.result?.map(({images, description }, index) => (
             <div key={index} className='p-10 '>
                 <ReactPlayer url={images.motion} controls width={300} height={250}/>
                 <p className='w-40 text-sm mt-2 items-center'>
