@@ -20,15 +20,12 @@ export const ResultContextProvider = ({ children }) => {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                text: "table tennis",
-                safesearch: "off",
-                region: "wt-wt",
-                color: "",
-                size: "",
-                type_image: "",
-                layout: "",
-                max_results: 100
-            })
+                "text": "table tennis ",
+                "safesearch": "off",
+                "timelimit": "",
+                "region": "wt-wt",
+                "max_results": 20
+              })
         });
 
         const data = await response.json();
